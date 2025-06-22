@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  targetNamespace: kyverno
+  interval: 5m
+  releaseName: kyverno
+  chart:
+    spec:
+      chart: kyverno
+      version: 3.2.4  # You can update this version as needed
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+        namespace: flux-system
+  install:
+    createNamespace: true
+  values:
+    reportsController:
+      enabled: true
+    admissionController:
+      enabled: true
+    backgroundController:
+      enabled: true
