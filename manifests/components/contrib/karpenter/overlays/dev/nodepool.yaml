@@ -17,7 +17,7 @@ spec:
           values: ["t2.small","t2.medium","t2.large"]
         - key: karpenter.sh/capacity-type
           operator: In
-          values: ["spot","on-demand"]
+          values: ["on-demand"]
   limits:
     cpu: 10
     memory: 32Gi
