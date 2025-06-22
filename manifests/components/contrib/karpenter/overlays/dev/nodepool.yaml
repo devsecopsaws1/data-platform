@@ -1,0 +1,26 @@
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: NodePool
+metadata:
+  name: t2-pool
+  labels:
+    kustomize.toolkit.fluxcd.io/name: karpenter
+    kustomize.toolkit.fluxcd.io/namespace: flux-system
+spec:
+  template:
+    metadata: {}
+    spec:
+      nodeClassRef:
+        name: karpenter-nodeclass  # Must match the EC2NodeClass name
+      requirements:
+        - key: "karpenter.k8s.aws/instance-type"
+          operator: In
+          values: ["t2.small","t2.medium","t2.large"]
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values: ["spot","on-demand"]
+  limits:
+    cpu: 10
+    memory: 32Gi
+  disruption:
+    consolidationPolicy: WhenUnderutilized
+    expireAfter: 720h  # Optional: 30 days

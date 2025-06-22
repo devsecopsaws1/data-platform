@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ../../base
   - nodeclass.yaml
+  - nodepool.yaml
