@@ -12,7 +12,7 @@ spec:
       nodeClassRef:
         name: karpenter-nodeclass  # Must match the EC2NodeClass name
       requirements:
-        - key: "karpenter.k8s.aws/instance-type"
+        - key: "node.kubernetes.io/instance-type"
           operator: In
           values: ["t2.small","t2.medium","t2.large"]
         - key: karpenter.sh/capacity-type
