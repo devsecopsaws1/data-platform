@@ -1,0 +1,30 @@
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: karpenter-nodeclass
+  labels:
+    kustomize.toolkit.fluxcd.io/name: karpenter
+    kustomize.toolkit.fluxcd.io/namespace: flux-system
+spec:
+  amiFamily: AL2023  # Amazon Linux 2
+  amiSelectorTerms:
+    - name: amazon-eks-node-al2023-x86_64-standard-1.30-v20241121
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        deleteOnTermination: true
+        encrypted: false
+        iops: 10000
+        volumeSize: 20Gi
+        volumeType: gp3
+  role: "KarpenterNodeRole-project-vpc"   # IAM role for EC2 instance profile
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery-project-vpc: project-vpc
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery-project-vpc: project-vpc
+  instanceProfile: KarpenterNodeInstanceProfile
+  tags:
+    karpenter.sh/discovery-project-vpc: project-vpc
+    managed-by: karpenter
