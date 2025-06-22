@@ -1,0 +1,47 @@
+# karpenter-helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: karpenter
+  namespace: flux-system
+  annotations:
+    meta.helm.sh/release-name: karpenter
+spec:
+  serviceAccountName: kustomize-controller
+  targetNamespace: karpenter
+  interval: 10m0s
+  releaseName: karpenter
+  chart:
+    spec:
+      chart: karpenter
+      version: "v0.36.1"  # update to latest if needed
+      sourceRef:
+        kind: HelmRepository
+        name: karpenter
+        namespace: flux-system
+  install:
+    createNamespace: true
+  upgrade:
+    remediation:
+      retries: 3
+    force: true
+  values:
+    installCRDs: true
+    settings:
+      clusterName: "project-vpc" # use your actual EKS endpoint
+    serviceAccount:
+      annotations:
+        eks.amazonaws.com/role-arn: "arn:aws:iam::414708969449:role/KarpenterControllerRole-project-vpc"
+    controller:
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+    webhook:
+       enabled: true
+    controllerPort:
+      httpMetricsPortname: "http-metrics-port"
+      httpsWebhookPortname: "https-webhook-port"
