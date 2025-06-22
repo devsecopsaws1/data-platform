@@ -14,7 +14,7 @@ spec:
   chart:
     spec:
       chart: karpenter
-      version: "v0.36.1"  # update to latest if needed
+      version: "0.36.1"  # update to latest if needed
       sourceRef:
         kind: HelmRepository
         name: karpenter
