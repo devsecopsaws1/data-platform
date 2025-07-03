@@ -9,7 +9,7 @@ spec:
   template:
     metadata:
       labels:
-        disktype: ssd
+        disktype: ssd   # attache this label to the nodes
     spec:
       nodeClassRef:
         name: karpenter-nodeclass  # Must match the EC2NodeClass name
