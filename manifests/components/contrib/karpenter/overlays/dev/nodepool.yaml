@@ -7,7 +7,9 @@ metadata:
     kustomize.toolkit.fluxcd.io/namespace: flux-system
 spec:
   template:
-    metadata: {}
+    metadata:
+      labels:
+        disktype: ssd
     spec:
       nodeClassRef:
         name: karpenter-nodeclass  # Must match the EC2NodeClass name
