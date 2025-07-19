@@ -4,4 +4,6 @@ resources:
   - ../../base
   - nodeclass.yaml
   - nodepool.yaml
+
+patchesStrategicMerge:
   - karpenter-patch.yaml
