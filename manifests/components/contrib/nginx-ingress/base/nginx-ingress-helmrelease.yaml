@@ -2,8 +2,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: ingress-nginx
-  namespace: ingress-nginx
+  namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
+  targetNamespace: ingress-nginx
   releaseName: ingress-nginx
   interval: 5m
   chart:

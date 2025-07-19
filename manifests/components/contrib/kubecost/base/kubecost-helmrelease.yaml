@@ -2,8 +2,11 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubecost
-  namespace: kubecost
+  namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
+  targetNamespace: kubecost
+  releaseName: kubecost
   interval: 5m
   chart:
     spec:
