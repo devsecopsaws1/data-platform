@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   #- kyverno.yaml
   - karpenter.yaml
-  #- nginx-ingress.yaml
+  - nginx-ingress.yaml
   - ../../_base   # Replace components with resources
