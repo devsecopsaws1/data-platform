@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kubecost
+  namespace: kubecost
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cost-analyzer
+      version: "1.107.0"  # Replace with latest stable version
+      sourceRef:
+        kind: HelmRepository
+        name: kubecost
+        namespace: flux-system
+  values:
+    kubecostProductConfigs:
+      clusterName: "project-vpc"  # Use your actual EKS cluster name
+    global:
+      grafana:
+        enabled: false
+      prometheus:
+        enabled: true
+        kubeStateMetrics:
+          enabled: true
