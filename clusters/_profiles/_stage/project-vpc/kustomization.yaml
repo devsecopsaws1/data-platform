@@ -4,5 +4,5 @@ resources:
   #- kyverno.yaml
   - karpenter.yaml
   - nginx-ingress.yaml
-  - kubecost.yaml
+  #- kubecost.yaml
   - ../../_base   # Replace components with resources
