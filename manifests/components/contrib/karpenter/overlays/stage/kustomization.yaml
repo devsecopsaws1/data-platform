@@ -4,3 +4,4 @@ resources:
   - ../../base
   - nodeclass.yaml
   - nodepool.yaml
+  - karpenter-patch.yaml
