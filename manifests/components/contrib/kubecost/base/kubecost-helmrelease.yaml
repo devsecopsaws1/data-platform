@@ -19,6 +19,11 @@ spec:
   values:
     kubecostProductConfigs:
       clusterName: "project-vpc"  # Use your actual EKS cluster name
+      cloudIntegration:
+        enabled: true
+        aws:
+          enabled: true
+          useServiceAccount: true
     global:
       grafana:
         enabled: true
@@ -26,3 +31,6 @@ spec:
         enabled: true
         kubeStateMetrics:
           enabled: true
+    serviceAccount:
+      create: false
+      name: kubecost-irsa
