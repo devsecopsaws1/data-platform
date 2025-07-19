@@ -3,3 +3,7 @@ kind: Kustomization
 resources:
   - karpenter-helmrepo.yaml
   - karpenter-helmrelease.yaml
+
+
+
+  
