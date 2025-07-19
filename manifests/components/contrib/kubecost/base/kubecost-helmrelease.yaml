@@ -21,7 +21,7 @@ spec:
       clusterName: "project-vpc"  # Use your actual EKS cluster name
     global:
       grafana:
-        enabled: false
+        enabled: true
       prometheus:
         enabled: true
         kubeStateMetrics:
