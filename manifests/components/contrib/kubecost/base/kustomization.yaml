@@ -3,7 +3,3 @@ kind: Kustomization
 resources:
   - kubecost-helmrepo.yaml
   - kubecost-helmrelease.yaml
-
-
-
-  
