@@ -24,6 +24,7 @@ spec:
         aws:
           enabled: true
           useServiceAccount: true
+          curEnabled: true
     global:
       grafana:
         enabled: true

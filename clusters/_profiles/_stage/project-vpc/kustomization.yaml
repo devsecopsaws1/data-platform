@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   #- kyverno.yaml
   - karpenter.yaml
-  - nginx-ingress.yaml
+  #- nginx-ingress.yaml
   - kubecost.yaml
   - ../../_base   # Replace components with resources
